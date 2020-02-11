@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+{% block main %}
+<h1>Game Owners</h1>
+{%for user in users%}
+<h1> <a href="/users/{{user.id}}"> - {{user.name}}</a></h1>
+
+{%endfor%}
+<br>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: ./..
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ../src/:/app
+    ports:
+      - 8000:8000
+    env_file:
+      - ../env/.env.dev
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=hello_flask
+      - POSTGRES_PASSWORD=hello_flask
+      - POSTGRES_DB=hello_flask_dev
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  postgres_data:
