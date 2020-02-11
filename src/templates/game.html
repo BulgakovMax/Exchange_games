@@ -2,7 +2,7 @@
 {% block main %}
 <h1>{{game.title}}</h1>
 
-<img src="{{ url_for('game.static', filename=img_name) }}" alt="{{ title }}" width="200" height="200" >
+
 <h3> Player rate: {{ game.player_rate}} </h3>
 <h3> BGG rate: {{ game.bgg_rate }} </h3>
 <h3> Minimum players: {{ game.player_min }} </h3>

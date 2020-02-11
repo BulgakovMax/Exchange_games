@@ -1,5 +1,6 @@
 from flask_restful import fields
 
+
 game_structure = {
     "title": fields.String,
     "alias": fields.String,
@@ -9,7 +10,7 @@ game_structure = {
     "player_max": fields.Integer,
     "language": fields.String,
     "type": fields.String,
-    "photo": fields.String
+    "img_name": fields.String
 }
 
 user_structure = {

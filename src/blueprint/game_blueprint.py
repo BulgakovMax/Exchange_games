@@ -18,13 +18,13 @@ game_bp = Blueprint('game',
 class AddGameForm(FlaskForm):
     game_title = StringField('Title of game:', validators=[DataRequired()])
     game_alias = StringField('Alias of game:', validators=[DataRequired()])
-    player_rate = FloatField('Player rate:',  [validators.number_range(0, 10), validators.DataRequired()])
-    bgg_rate = FloatField('BGG rate:',  [validators.number_range(0, 10), validators.DataRequired()])
-    player_min = IntegerField('Value of player minimum:',  [validators.number_range(1, 20), validators.DataRequired()])
-    player_max = IntegerField('Value of player maximum:',  [validators.number_range(1, 20), validators.DataRequired()])
+    player_rate = FloatField('Player rate:', [validators.number_range(0, 10), validators.DataRequired()])
+    bgg_rate = FloatField('BGG rate:', [validators.number_range(0, 10), validators.DataRequired()])
+    player_min = IntegerField('Value of player minimum:', [validators.number_range(1, 20), validators.DataRequired()])
+    player_max = IntegerField('Value of player maximum:', [validators.number_range(1, 20), validators.DataRequired()])
     language = StringField('Language of game:', validators=[DataRequired()])
     game_type = StringField('Type of game:', validators=[DataRequired()])
-    img_name = FileField('Photo:')
+    img_name = FileField()
 
     submit = SubmitField('Add game')
 
@@ -37,8 +37,7 @@ def get_game(value=None):
         game = GameModel.query.get(value)
         return render_template('game.html',
                                title='Game',
-                               game=game,
-                               img_name=game['img_name']
+                               game=game
                                )
     return render_template('games.html',
                            title='List Of Games',
@@ -60,7 +59,7 @@ def add_game():
                 "player_max": request.form.get('player_max'),
                 "language": request.form.get('language'),
                 "type": request.form.get('game_type'),
-                'img_name': upload_image(request.files['game_image'])
+                'img_name': upload_image(request.files['img_name'])
             }
             new_post = GameModel(**data)
             db.session.add(new_post)
