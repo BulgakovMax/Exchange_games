@@ -1,5 +1,9 @@
 # ignore all cache
 *.pyc
+__pycache__
 
 # ignore all logs
 *.log
+
+# ignore env files
+.env.*

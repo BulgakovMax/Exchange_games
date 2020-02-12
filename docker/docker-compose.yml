@@ -8,9 +8,9 @@ services:
     volumes:
       - ../src/:/app
     ports:
-      - 8000:8000
+      - 8001:8000
     env_file:
-      - ../env/.env.dev
+      - ../env/.env.dev # Do not declare environment if you want this to work
     depends_on:
       - db
 
@@ -19,9 +19,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=hello_flask
-      - POSTGRES_PASSWORD=hello_flask
-      - POSTGRES_DB=hello_flask_dev
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=game
 
   adminer:
     image: adminer

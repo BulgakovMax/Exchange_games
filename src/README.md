@@ -17,3 +17,15 @@ You can also logout by yourself just send get request on logout url.
 * Do POST http://127.0.0.1:5000/auth?login=Nick&password=12345
 * DO POST http://127.0.0.1:5000/login?login=Nick&password=12345
 * DO GET http://127.0.0.1:5000/main
+
+
+# First run
+* Apply database migrations
+```bash
+> flask db upgrade
+```
+
+* more info
+```http
+https://flask-migrate.readthedocs.io/en/latest/
+```

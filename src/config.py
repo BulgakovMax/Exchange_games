@@ -2,18 +2,26 @@ import os
 
 
 class Config:
-    TEST_VALUE = "CONFIG_VALUE"
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite://")
+    DB_TYPE="postgres"
+    DB_HOST="db"
+    DB_PORT=5432
+    DB_USER=os.environ.get("DB_USER")
+    DB_PASSWORD=os.environ.get("DB_PASSWORD")
+    DB_NAME=os.environ.get("DB_NAME")
+
+    SQLALCHEMY_DATABASE_URI = f"{DB_TYPE}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'very_secret_key'
 
+    print (SQLALCHEMY_DATABASE_URI)
+
 
 class DevConfig(Config):
-    TEST_VALUE = "DEV_CONFIG_VALUE"
+    pass
 
 
 class TestConfig(Config):
-    TEST_VALUE = "TEST_CONFIG_VALUE"
+    pass
 
 
 def run_config():

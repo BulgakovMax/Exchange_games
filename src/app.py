@@ -8,6 +8,7 @@ from blueprint.wish_list_blueprint import wish_list_bp
 from config import run_config
 from api_blueprint import blueprint
 from db import db
+from flask_migrate import Migrate
 
 
 def create_app():
@@ -15,6 +16,7 @@ def create_app():
     app.config.from_object(run_config())
 
     db.init_app(app)
+    migrate = Migrate(app, db)
     app.permanent_session_lifetime = timedelta(minutes=20)  # add session expire time
 
     app.register_blueprint(blueprint, url_prefix='/api')
