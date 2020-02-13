@@ -3,7 +3,7 @@ from datetime import timedelta
 from flask import Flask
 from blueprint.user_blueprint import user_bp
 from blueprint.game_blueprint import game_bp
-from blueprint.contact_blueprint import contact_bp
+from blueprint.base_blueprint import base_bp
 from blueprint.wish_list_blueprint import wish_list_bp
 from config import run_config
 from api_blueprint import blueprint
@@ -22,7 +22,7 @@ def create_app():
     app.register_blueprint(blueprint, url_prefix='/api')
     app.register_blueprint(user_bp)
     app.register_blueprint(game_bp)
-    app.register_blueprint(contact_bp)
+    app.register_blueprint(base_bp)
     app.register_blueprint(wish_list_bp)
 
     return app

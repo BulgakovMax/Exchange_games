@@ -9,15 +9,14 @@
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/reset.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/responsive.css')}}">
 
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='js/jquery.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
 </head>
 <body>
 
 	<section class="hero">
 		<header>
 			<div class="wrapper">
-				<a href="/"><img src="img/.jpg" class="logo" alt=""/></a>
 				<a href="#" class="hamburger"></a>
 				<nav>
 					<ul>
@@ -48,30 +47,6 @@
 			</form>
 			<a href="#" class="advanced_search_icon" id="advanced_search_btn"></a>
 		</div>
-
-		<div class="advanced_search">
-			<div class="wrapper">
-				<span class="arrow"></span>
-				<form action="#" method="post">
-					<div class="search_fields">
-						<input type="text" class="float" id="check_in_date" name="check_in_date" placeholder="Check In Date"  autocomplete="off">
-
-						<hr class="field_sep float"/>
-
-						<input type="text" class="float" id="check_out_date" name="check_out_date" placeholder="Check Out Date"  autocomplete="off">
-					</div>
-					<div class="search_fields">
-						<input type="text" class="float" id="min_price" name="min_price" placeholder="Min. Price"  autocomplete="off">
-
-						<hr class="field_sep float"/>
-
-						<input type="text" class="float" id="max_price" name="max_price" placeholder="Max. price"  autocomplete="off">
-					</div>
-					<input type="text" id="keywords" name="keywords" placeholder="Keywords"  autocomplete="off">
-					<input type="submit" id="submit_search" name="submit_search"/>
-				</form>
-			</div>
-		</div><!--  end advanced search section  -->
 	</section><!--  end search section  -->
 
 
