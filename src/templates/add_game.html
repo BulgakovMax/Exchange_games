@@ -1,0 +1,82 @@
+{% extends "index.html" %}
+{% block main %}
+    <br>
+    <a href="javascript:history.back()"> <-- Go Back</a>
+    <br>
+    <br>
+    <div>Add new game:</div>
+    <br>
+    <form action="" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.game_title.label }}
+            {{ form.game_title(size=24) }}
+            {% for error in form.game_title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.game_alias.label }}
+            {{ form.game_alias(size=24) }}
+            {% for error in form.game_alias.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.player_rate.label }}
+            {{ form.player_rate(size=5) }}
+            {% for error in form.game_title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.bgg_rate.label }}
+            {{ form.bgg_rate(size=5) }}
+            {% for error in form.game_alias.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+                <div>
+            {{ form.player_min.label }}
+            {{ form.player_min(size=5) }}
+            {% for error in form.game_title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.player_max.label }}
+            {{ form.player_max(size=5) }}
+            {% for error in form.game_alias.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+                <div>
+            {{ form.language.label }}
+            {{ form.language(size=10) }}
+            {% for error in form.game_title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.game_type.label }}
+            {{ form.game_type(size=24) }}
+            {% for error in form.game_alias.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.img_name.label }}
+            {{ form.img_name(size=24) }}
+            {% for error in form.game_alias.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <br>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+    <br>
+    <a href="/games"> Back to games</a>
+    <br>
+{% endblock %}

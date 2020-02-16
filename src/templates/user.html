@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+{% block main %}
+<h1>Owner {{user.name}}</h1>
+
+
+{%for user in users%}
+<p> <a href="/user/{{user.id}}">{{user.name}}</a></p>
+{%endfor%}
+<br>
+<h2>All games of owner {{user.name}}:</h2>
+{%for game in games%}
+<p> <a href="/games/{{game.id}}">  {{game.title}}</a></p>
+{%endfor%}
+<br>
+ <form action="" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.game }}
+            {{ form.submit() }}
+        </div>
+    </form><br>
+<h2><a href="/users">Go to all users</a> </h2>
+
+
+{% endblock %}

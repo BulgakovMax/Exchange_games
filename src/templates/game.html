@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% block main %}
+<h1>{{game.title}}</h1>
+
+
+<h3> Player rate: {{ game.player_rate}} </h3>
+<h3> BGG rate: {{ game.bgg_rate }} </h3>
+<h3> Minimum players: {{ game.player_min }} </h3>
+<h3> Maximum players: {{ game.player_max }} </h3>
+<h3> Language of game: {{ game.language }} </h3>
+<h3> Type of game: {{ game.type }} </h3>
+<br>
+<h2> List of game owners </h2>
+{%for user in game.users%}
+<h3> <a href="/users/{{user.id}}"> - {{user.name}}</a></h3>
+{%endfor%}
+
+
+<br>
+<h2> <a href="/games"> List of games</a></h2>
+<br>
+
+{% endblock %}
