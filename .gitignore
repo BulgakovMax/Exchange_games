@@ -7,3 +7,5 @@ __pycache__
 
 # ignore env files
 .env.*
+
+.idea
