@@ -1,21 +1,33 @@
 {% extends "index.html" %}
 {% block main %}
-<h1>Owner {{user.name}}</h1>
+<h1>Hello, {{current_user.username}} !</h1>
 
 
 {%for user in users%}
 <p> <a href="/user/{{user.id}}">{{user.username}}</a></p>
 {%endfor%}
 <br>
-<h2>All games of owner {{user.username}}:</h2>
+<h2>Your games collection: {{user.username}}:</h2>
 {%for game in games%}
-<p> <a href="/games/{{game.id}}">  {{game.title}}</a></p>
+<h3> <a href="/games/{{game.id}}">  {{game.title}}</a></h3>
+<h4>
+<a href="/users/{{current_user.id}}/{{game.id}}/collection/delete"> Delete game from collection</a>
+</h4>
 {%endfor%}
 <br>
+
  <form action="" method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <div>
+         <h3>Add your game</h3>
             {{ form.game }}
+            <br>
+         <h3>Add game to wishlist</h3>
+            {{ form.wish_game }}
+
+            <br>
+            <br>
+
             {{ form.submit() }}
         </div>
     </form><br>

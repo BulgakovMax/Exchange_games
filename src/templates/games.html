@@ -1,8 +1,9 @@
 {% extends "index.html" %}
 {% block main %}
-<h1>{{title}}</h1>
+<h1>{{title}} : </h1>
 {%for game in games%}
-<h2> <a href="/games/{{game.id}}"> - {{game.title}}</a></h2>
+<h2> {{ game.rank_bgg}} <a href="/games/{{game.id}}"> - {{game.title}}</a></h2>
+<hr>
 {%endfor%}
 <br>
 

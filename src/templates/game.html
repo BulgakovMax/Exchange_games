@@ -2,9 +2,9 @@
 {% block main %}
 <h1>{{game.title}}</h1>
 
-<img src="/static/img/{{game.img_name}}">
+<img src="{{game.img_name}}">
+<h3> BGG rank: {{ game.rank_bgg}}</h3>
 <h3> Player rate: {{ game.player_rate}}</h3>
-<h3> {{game.img_name}}</h3>
 <h3> BGG rate: {{ game.bgg_rate }} </h3>
 <h3> Minimum players: {{ game.player_min }} </h3>
 <h3> Maximum players: {{ game.player_max }} </h3>
@@ -13,7 +13,7 @@
 <br>
 <h2> List of game owners </h2>
 {%for user in game.users%}
-<h3> <a href="/users/{{user.id}}"> - {{user.name}}</a></h3>
+<h3> <a href="/users/{{user.id}}"> - {{user.username}}</a></h3>
 {%endfor%}
 
 

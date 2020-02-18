@@ -2,10 +2,15 @@
 {% block main %}
 <h1>{{title}}</h1>
 <br>
-<h3>This is your wish list:</h3>
-<p>
- <a href="/" >  LIST </a>
-</p>
+<h2>This is your wish list:</h2>
+
+{%for game in current_user.wish_games %}
+
+<h3>{{loop.index}}.  {{game}}</h3>
+<a href="/users/{{current_user.id}}/{{game.id}}/wish_list/delete"> Delete game from wishlist</a>
+{% endfor %}
+
+
 <br>
 
 {% endblock %}

@@ -17,8 +17,8 @@ user_bp = Blueprint('user',
 
 
 class SelectGame(FlaskForm):
-
-    game = QuerySelectField('Select game', query_factory=lambda: GameModel.query.all())
+    game = QuerySelectField('Select game', query_factory=lambda: GameModel.query.all(), allow_blank=True)
+    wish_game = QuerySelectField('Select game', query_factory=lambda: GameModel.query.all(), allow_blank=True)
     submit = SubmitField('Add game')
 
 
@@ -26,6 +26,22 @@ class AddUserForm(FlaskForm):
     user_name = StringField('Name of user:', validators=[DataRequired()])
     user_email = StringField('Email of user:', validators=[DataRequired()])
     submit = SubmitField('Add user')
+
+
+@user_bp.route('/users/<user>/<game>/<list_type>/delete', methods=['GET'])
+def delete_game(user=None, game=None, list_type=None):
+    user_obj = User.query.get(user)
+    game_obj = GameModel.query.get(game)
+    redirect_url = "/"
+    if user_obj:
+        if list_type == "wish_list":
+            user_obj.wish_games.remove(game_obj)
+            redirect_url="/wish_list"
+        elif list_type == "collection":
+            user_obj.games.remove(game_obj)
+            redirect_url="/users/"+user
+        db.session.commit()
+    return redirect(redirect_url)
 
 
 @user_bp.route('/users', methods=['GET'])
@@ -38,8 +54,13 @@ def user(value=None):
         if request.method == 'POST':
             if select_game_form.validate_on_submit():
                 game_id = request.form.get('game')
-                game = GameModel.query.get(game_id)
-                current_user.games.append(game)
+                wish_game_id = request.form.get('wish_game')
+                if game_id != '__None':
+                    game = GameModel.query.get(game_id)
+                    current_user.games.append(game)
+                if wish_game_id != '__None':
+                    wish_game = GameModel.query.get(wish_game_id)
+                    current_user.wish_games.append(wish_game)
                 db.session.commit()
                 return redirect(f'/users/{value}')
         return render_template('user.html',
