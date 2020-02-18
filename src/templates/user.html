@@ -4,10 +4,10 @@
 
 
 {%for user in users%}
-<p> <a href="/user/{{user.id}}">{{user.name}}</a></p>
+<p> <a href="/user/{{user.id}}">{{user.username}}</a></p>
 {%endfor%}
 <br>
-<h2>All games of owner {{user.name}}:</h2>
+<h2>All games of owner {{user.username}}:</h2>
 {%for game in games%}
 <p> <a href="/games/{{game.id}}">  {{game.title}}</a></p>
 {%endfor%}

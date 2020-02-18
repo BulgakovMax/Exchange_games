@@ -9,6 +9,8 @@ from config import run_config
 from api_blueprint import blueprint
 from db import db
 from flask_migrate import Migrate
+from flask_user import UserManager
+from models.models import User
 
 
 def create_app():
@@ -18,7 +20,7 @@ def create_app():
     db.init_app(app)
     migrate = Migrate(app, db)
     app.permanent_session_lifetime = timedelta(minutes=20)  # add session expire time
-
+    UserManager(app, db, User)
     app.register_blueprint(blueprint, url_prefix='/api')
     app.register_blueprint(user_bp)
     app.register_blueprint(game_bp)

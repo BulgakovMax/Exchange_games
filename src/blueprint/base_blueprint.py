@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_user import login_required
 
 base_bp = Blueprint('base',
                     __name__,
@@ -10,12 +11,13 @@ base_bp = Blueprint('base',
 
 @base_bp.route('/', methods=['GET'])
 def index():
-    return render_template('index.html',
-                           title='Index'
+    return render_template('base.html',
+                           title='Base'
                            )
 
 
 @base_bp.route('/contact', methods=['GET'])
+@login_required
 def contact():
     return render_template('contact.html',
                            title='Contact'

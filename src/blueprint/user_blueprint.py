@@ -5,7 +5,8 @@ from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired
 
 from db import db
-from models.models import UserModel, GameModel
+from models.models import User, GameModel
+from flask_user import current_user
 
 user_bp = Blueprint('user',
                     __name__,
@@ -30,16 +31,15 @@ class AddUserForm(FlaskForm):
 @user_bp.route('/users', methods=['GET'])
 @user_bp.route('/users/<value>', methods=['GET', 'POST'])
 def user(value=None):
-    users = UserModel.query.all()
+    users = User.query.all()
     if value:
-        user = UserModel.query.get(value)
         select_game_form = SelectGame()
-        games = user.games
+        games = current_user.games
         if request.method == 'POST':
             if select_game_form.validate_on_submit():
                 game_id = request.form.get('game')
                 game = GameModel.query.get(game_id)
-                user.games.append(game)
+                current_user.games.append(game)
                 db.session.commit()
                 return redirect(f'/users/{value}')
         return render_template('user.html',
@@ -63,7 +63,7 @@ def add_user():
                 'name': request.form.get('user_name'),
                 'email': request.form.get('user_email')
             }
-            new_post = UserModel(**data)
+            new_post = User(**data)
             db.session.add(new_post)
             db.session.commit()
             return redirect('/users')

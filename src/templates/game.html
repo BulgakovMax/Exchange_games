@@ -2,8 +2,9 @@
 {% block main %}
 <h1>{{game.title}}</h1>
 
-
-<h3> Player rate: {{ game.player_rate}} </h3>
+<img src="/static/img/{{game.img_name}}">
+<h3> Player rate: {{ game.player_rate}}</h3>
+<h3> {{game.img_name}}</h3>
 <h3> BGG rate: {{ game.bgg_rate }} </h3>
 <h3> Minimum players: {{ game.player_min }} </h3>
 <h3> Maximum players: {{ game.player_max }} </h3>

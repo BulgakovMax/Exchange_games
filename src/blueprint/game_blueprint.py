@@ -17,13 +17,13 @@ game_bp = Blueprint('game',
 
 class AddGameForm(FlaskForm):
     game_title = StringField('Title of game:', validators=[DataRequired()])
-    game_alias = StringField('Alias of game:', validators=[DataRequired()])
+    game_alias = StringField('Alias of game:')
     player_rate = FloatField('Player rate:', [validators.number_range(0, 10), validators.DataRequired()])
     bgg_rate = FloatField('BGG rate:', [validators.number_range(0, 10), validators.DataRequired()])
     player_min = IntegerField('Value of player minimum:', [validators.number_range(1, 20), validators.DataRequired()])
     player_max = IntegerField('Value of player maximum:', [validators.number_range(1, 20), validators.DataRequired()])
     language = StringField('Language of game:', validators=[DataRequired()])
-    game_type = StringField('Type of game:', validators=[DataRequired()])
+    game_type = StringField('Type of game:')
     img_name = FileField()
 
     submit = SubmitField('Add game')

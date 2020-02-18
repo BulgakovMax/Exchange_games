@@ -13,7 +13,11 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'very_secret_key'
 
-    print (SQLALCHEMY_DATABASE_URI)
+    # Flask-User settings
+    USER_APP_NAME = "Flask-User QuickStart App"  # Shown in and email templates and page footers
+    USER_ENABLE_EMAIL = False  # Disable email authentication
+    USER_ENABLE_USERNAME = True  # Enable username authentication
+    USER_REQUIRE_RETYPE_PASSWORD = False  # Simplify register form
 
 
 class DevConfig(Config):

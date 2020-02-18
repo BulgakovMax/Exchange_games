@@ -26,7 +26,7 @@ def check_login(f):
 def upload_image(request_files):
     if request_files:
         image = request_files
-        image.save(os.path.join('/static/img/games_img', image.filename))
+        image.save(os.path.join('static/img', image.filename))
         return image.filename
     else:
         return 'no_image.jpg'

@@ -1,8 +1,8 @@
-"""Initial migration.
+"""empty message
 
-Revision ID: d2cbc98d06c3
+Revision ID: 0c79a7518a3c
 Revises: 
-Create Date: 2020-02-12 19:22:37.778786
+Create Date: 2020-02-18 15:12:08.184807
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd2cbc98d06c3'
+revision = '0c79a7518a3c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,15 +28,20 @@ def upgrade():
     sa.Column('player_max', sa.Integer(), nullable=False),
     sa.Column('language', sa.String(length=128), nullable=True),
     sa.Column('type', sa.String(length=128), nullable=True),
-    sa.Column('img_name', sa.LargeBinary(), nullable=True),
+    sa.Column('img_name', sa.String(length=128), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('email', sa.String(length=128), nullable=False),
-    sa.Column('name', sa.String(length=128), nullable=False),
+    sa.Column('email', sa.String(length=255), nullable=True),
+    sa.Column('email_confirmed_at', sa.DateTime(), nullable=True),
+    sa.Column('username', sa.String(length=50), nullable=False),
+    sa.Column('password', sa.String(length=255), nullable=False),
+    sa.Column('first_name', sa.String(length=50), nullable=True),
+    sa.Column('last_name', sa.String(length=50), nullable=True),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('email')
+    sa.UniqueConstraint('email'),
+    sa.UniqueConstraint('username')
     )
     op.create_table('collection',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
